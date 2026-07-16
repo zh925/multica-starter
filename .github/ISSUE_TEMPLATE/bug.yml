@@ -1,0 +1,46 @@
+name: 缺陷
+description: 报告可复现的问题
+title: "[缺陷] "
+labels: []
+body:
+  - type: input
+    id: version
+    attributes:
+      label: 环境与版本
+      placeholder: 环境、build ID 或 commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望结果
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际结果
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: 严重级别
+      options:
+        - Blocker
+        - Critical
+        - Major
+        - Minor
+        - Suggestion
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: 日志、截图与其他证据

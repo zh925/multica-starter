@@ -1,0 +1,30 @@
+name: 需求/功能
+description: 提交一个需要进入完整研发流程的需求
+title: "[需求] "
+labels: []
+body:
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景与目标
+      description: 为什么要做，期望改变什么？
+    validations:
+      required: true
+  - type: textarea
+    id: users
+    attributes:
+      label: 用户与场景
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: 初始范围与约束
+  - type: textarea
+    id: success
+    attributes:
+      label: 成功标准
+  - type: textarea
+    id: references
+    attributes:
+      label: 参考资料
