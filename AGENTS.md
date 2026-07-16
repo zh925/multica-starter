@@ -23,6 +23,14 @@
 - Secret 只能存在于批准的 Secret/CI 系统，不得写入代码、日志、Issue、PR 或文档。
 - CI/CD 尚未接入。不得声称已自动构建、部署或验证；必须记录实际执行方式和证据。
 
+## 门禁执行责任
+
+- 当前交付 Issue 的 assignee 是该 Issue 的门禁执行者。收到符合 `docs/workflow/gates.md` 格式的人工批准后，必须执行批准中明确授权的动作，不能只记录结论。
+- 父 Issue 的 leader 是阶段推进者。收到 stage barrier 完成通知后，必须检查全部子 Issue，再把最低一个未完成 stage 中满足依赖的 `backlog` Issue 推进到 `todo`。
+- 门禁执行者与阶段推进者职责分离：前者合并当前交付、核验并关闭当前 Issue；后者只在整个 stage 终态后推进下一 stage。
+- 没有明确的 `允许合并：是` 时不得合并 PR；没有明确的版本、结论或授权动作时不得推断用户意图。
+- 合并失败、head SHA 变化、PR 不可合并或检查不满足时，不得把 Issue 标为 `done`，应保留 `in_review` 或标为 `blocked` 并报告具体原因。
+
 ## 固定需求目录
 
 每个需求使用以下结构，其中 `<ISSUE-KEY>` 示例为 `RUO-123`：
@@ -48,8 +56,10 @@ docs/requirements/<ISSUE-KEY>/
 - 分支建议：`agent/<issue-key>-<short-description>`。
 - PR 必须使用 `.github/pull_request_template.md`。
 - PR 必须记录原始需求、确认 commit、关联 Issue、验收标准映射、测试、数据库/基础设施影响、风险和回滚。
-- 只对合并后确实应该完成的主开发 Issue 使用 `Closes RUO-123`；其他关联项写入关联表。
+- 只对本次 PR 合并后确实应该完成的当前交付 Issue 使用 `Closes RUO-123`；其他关联项写入关联表。需求、原型、开发等阶段 PR 都可以关闭各自的阶段 Issue，但不得顺带关闭父需求。
 - 修改评审意见期间将 PR 置为 Draft；完成修改并自检后标记 Ready，触发新一轮评审。
+- 请求人工批准前，交付者必须确保 PR 正文已有正确的 close intent，并报告 PR URL、当前 head SHA、检查状态和建议合并策略。
+- 获得明确合并授权后，门禁执行者必须重新核验 head SHA，执行合并，确认 GitHub PR 已为 `merged`，再核验 Multica Issue 是否为 `done`；Webhook 未自动关单时可在确认合并后手动置为 `done`。
 
 ## 完成定义
 
