@@ -46,11 +46,13 @@ docs/requirements/<ISSUE-KEY>/
 ├── prototype/
 │   ├── README.md
 │   ├── assets/
-│   └── screenshots/
+│   └── screenshots/          # 可选，缺少浏览器能力时不阻塞交付
 ├── development/
 ├── qa/
 └── release/
 ```
+
+可运行的 HTML/CSS/JavaScript 原型是原型交付的事实来源。README 必须提供运行方式、入口、状态覆盖和验收标准映射；截图仅用于 PR 快速预览或版本快照，不得因运行环境没有浏览器能力而阻塞原型进入内部评审。未执行的视觉或交互检查必须如实记录为风险。
 
 ## Git 与 PR
 
