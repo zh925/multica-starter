@@ -61,4 +61,3 @@
 - GitHub Webhook 延迟时，以 GitHub 的真实 merged 状态为前提，再手动补 Multica 状态。
 - 合并失败时记录失败原因，不重复盲试；权限、冲突、保护规则或检查失败需要人工/开发处理。
 - 父 leader 被重复唤醒时，已是 `todo/in_progress/done` 的下一阶段 Issue 不得再次触发或重建。
-
